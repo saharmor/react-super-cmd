@@ -4,7 +4,10 @@
   "description": "A sleek command line modal for React apps",
   "author": "saharmor",
   "license": "MIT",
-  "repository": "saharmor/react-super-cmd",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saharmor/react-super-cmd.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
@@ -63,5 +66,10 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "homepage": "https://github.com/saharmor/react-super-cmd#readme",
+  "directories": {
+    "example": "example"
+  },
+  "dependencies": {}
 }

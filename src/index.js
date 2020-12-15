@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -40,7 +40,8 @@ const useStyles = (theme) => ({
   },
   possibleCommands: {
     maxHeight: '240px',
-    overflowY: 'scroll'
+    overflowY: 'scroll',
+    scrollbarColor: '#757474',
   },
   divider: {
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -49,29 +50,34 @@ const useStyles = (theme) => ({
 
 
 const CommandLineModal = ({classes, commands, isOpen, toggleIsModalOpen, onClose, title, logo = <OfflineBoltOutlined/>}) => {
-  const [possibleCommands, setPossibleCommands] = useState(commands);
+  const commandsInternal = {};
+  Object.entries(commands).map(([commandName, properties]) => {
+    commandsInternal[commandName] = {...properties, ref: useRef(null)}
+  })
+
+  const [possibleCommands, setPossibleCommands] = useState(commandsInternal);
   const [highlightedCmdName, setHighlightedCmdName] = useState(Object.keys(possibleCommands)[0]);
 
-  function setHighlightedCallback(commandName) {
+  function changeHighlightedCmd(commandName) {
     setHighlightedCmdName(commandName);
   }
 
   function handleInputChange(currInput) {
     const inputToSearch = currInput.toLowerCase();
     let tempPossibleCommands = {};
-    Object.entries(commands).map(([commandName, properties]) => {
+    Object.entries(commandsInternal).map(([commandName, properties]) => {
       if (properties.name.toLowerCase().includes(inputToSearch)) {
         tempPossibleCommands[commandName] = properties
       }
     });
     setPossibleCommands(tempPossibleCommands);
-    setHighlightedCmdName(Object.keys(tempPossibleCommands)[0]);
+    changeHighlightedCmd(Object.keys(tempPossibleCommands)[0]);
   }
 
   function handleCommandSelected() {
     if (highlightedCmdName) {
       possibleCommands[highlightedCmdName]['callback']();
-      setPossibleCommands(commands);
+      setPossibleCommands(commandsInternal);
       toggleIsModalOpen();
     }
   }
@@ -80,19 +86,23 @@ const CommandLineModal = ({classes, commands, isOpen, toggleIsModalOpen, onClose
     const keysArray = Object.keys(possibleCommands);
     const currSelectedIndex = keysArray.indexOf(highlightedCmdName);
 
+    let selectedCommandName = null;
     if (direction === "down") {
       if (currSelectedIndex + 1 === keysArray.length) {
-        setHighlightedCmdName(keysArray[0]);
+        selectedCommandName = keysArray[0];
       } else {
-        setHighlightedCmdName(keysArray[currSelectedIndex + 1]);
+        selectedCommandName = keysArray[currSelectedIndex + 1];
       }
     } else if (direction === "up") {
       if (currSelectedIndex - 1 < 0) {
-        setHighlightedCmdName(keysArray[keysArray.length - 1]);
+        selectedCommandName = keysArray[keysArray.length - 1];
       } else {
-        setHighlightedCmdName(keysArray[currSelectedIndex - 1]);
+        selectedCommandName = keysArray[currSelectedIndex - 1];
       }
     }
+
+    changeHighlightedCmd(selectedCommandName);
+    commandsInternal[selectedCommandName].ref.current.scrollIntoView();
   }
 
   function onKeyPress(event) {
@@ -107,8 +117,7 @@ const CommandLineModal = ({classes, commands, isOpen, toggleIsModalOpen, onClose
 
   return (
     <Dialog open={isOpen} onExit={onClose} fullWidth PaperProps={{classes: {root: classes.paperRoot}}}
-            BackdropProps={{classes: {root: classes.backdropRoot}}} TransitionProps={{timeout: 0}}
-    >
+            BackdropProps={{classes: {root: classes.backdropRoot}}} TransitionProps={{timeout: 0}}>
       <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
         <div className={classes.titleSection}>
           {logo}
@@ -124,7 +133,7 @@ const CommandLineModal = ({classes, commands, isOpen, toggleIsModalOpen, onClose
           </Grid>
           <Grid item xs={12} className={classes.possibleCommands}>
             <CommandsList commands={possibleCommands} highlightedCmdName={highlightedCmdName}
-                          setHighlightedCallback={setHighlightedCallback} handleEnter={handleCommandSelected}/>
+                          setHighlightedCallback={changeHighlightedCmd} handleEnter={handleCommandSelected}/>
           </Grid>
         </Grid>
       </DialogContent>

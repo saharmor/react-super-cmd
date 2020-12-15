@@ -38,11 +38,11 @@ const useStyles = (theme) => ({
   }
 });
 
-const CommandRow = ({classes, command, commandName, isHighlighted, onHover, onKeyPress, onClick}) => {
+const CommandRow = ({classes, command, commandName, isHighlighted, onHover, onKeyPress, onClick, ref}) => {
   const rootStyle = isHighlighted ? classes.rootHighlighted : classes.root;
 
   return (
-    <ButtonBase className={rootStyle} onClick={onClick} onMouseOver={() => onHover(commandName)} onKeyPress={onKeyPress}>
+    <ButtonBase ref={command['ref']} className={rootStyle} onClick={onClick} onMouseEnter={() => onHover(commandName)} onKeyPress={onKeyPress}>
       <Grid item container className={classes.button} justify="space-between">
         <Grid item xs={10} md={8}>
           <Grid container>
