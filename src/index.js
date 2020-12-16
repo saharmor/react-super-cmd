@@ -50,16 +50,21 @@ const useStyles = (theme) => ({
 
 
 const CommandLineModal = ({classes, commands, isOpen, toggleIsModalOpen, onClose, title, logo = <OfflineBoltOutlined/>}) => {
-  const commandsInternal = {};
+  let commandsInternal = {};
   Object.entries(commands).map(([commandName, properties]) => {
     commandsInternal[commandName] = {...properties, ref: useRef(null)}
-  })
+  });
 
   const [possibleCommands, setPossibleCommands] = useState(commandsInternal);
   const [highlightedCmdName, setHighlightedCmdName] = useState(Object.keys(possibleCommands)[0]);
+  const [ignoreHover, setIgnoreHover] = useState(false);
 
   function changeHighlightedCmd(commandName) {
     setHighlightedCmdName(commandName);
+  }
+
+  function toggleIgnoreHover() {
+    setIgnoreHover(previousState => !previousState);
   }
 
   function handleInputChange(currInput) {
@@ -83,6 +88,7 @@ const CommandLineModal = ({classes, commands, isOpen, toggleIsModalOpen, onClose
   }
 
   function onArrowsPress(direction) {
+    setIgnoreHover(true);
     const keysArray = Object.keys(possibleCommands);
     const currSelectedIndex = keysArray.indexOf(highlightedCmdName);
 
@@ -133,7 +139,8 @@ const CommandLineModal = ({classes, commands, isOpen, toggleIsModalOpen, onClose
           </Grid>
           <Grid item xs={12} className={classes.possibleCommands}>
             <CommandsList commands={possibleCommands} highlightedCmdName={highlightedCmdName}
-                          setHighlightedCallback={changeHighlightedCmd} handleEnter={handleCommandSelected}/>
+                          setHighlightedCallback={changeHighlightedCmd} handleEnter={handleCommandSelected}
+                          ignoreHover={ignoreHover} toggleIgnoreHover={toggleIgnoreHover}/>
           </Grid>
         </Grid>
       </DialogContent>

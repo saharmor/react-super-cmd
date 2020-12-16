@@ -13,16 +13,19 @@ const App = () => {
 
   const commands = {
     SEARCH_CONTACT: {
-      name: 'Search', desc: 'Search contact', logo: <SearchOutlinedIcon/>, shortcut: 'S', callback: () => console.log('search')
+      name: 'Search', logo: <SearchOutlinedIcon/>, shortcut: 'S', callback: () => console.log('search')
     },
     ADD_CONTACT: {
-      name: 'Add', desc: 'Add contact', logo: <AddCircleOutlineIcon/>, shortcut: '⌘ A', callback: () => console.log('add')
+      name: 'Add', logo: <AddCircleOutlineIcon/>, shortcut: '⌘ A', callback: () => console.log('add')
     },
     DELETE_CONTACT: {
-      name: 'Delete', desc: 'Delete contact', logo: <RemoveCircleOutlineOutlinedIcon/>, shortcut: '⌘ D', callback: () => console.log('delete')
+      name: 'Delete', logo: <RemoveCircleOutlineOutlinedIcon/>, shortcut: '⌘ D', callback: () => console.log('delete')
     },
     UPDATE_CONTACT: {
-      name: 'Update', desc: 'Update contact', logo: <UpdateOutlinedIcon/>, shortcut: null, callback: () => console.log('update')
+      name: 'Update', logo: <UpdateOutlinedIcon/>, shortcut: null, callback: () => console.log('update')
+    },
+    REACH_OUT_CONTACT: {
+      name: 'Reach out', logo: <UpdateOutlinedIcon/>, shortcut: 'ctrl+R', callback: () => console.log('reach out')
     }
   }
 
