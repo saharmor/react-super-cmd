@@ -8,12 +8,13 @@ import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import AutocompleteCommandField from "./AutocompleteCommandField";
 import CommandsList from "./CommandsList";
+import OfflineBoltOutlined from "@material-ui/icons/OfflineBoltOutlined";
 
 const useStyles = (theme) => ({
   paperRoot: {
     padding: '10px 0 10px 0',
     minWidth: '760px',
-    height: '380px',
+    maxHeight: '380px',
     backgroundColor: '#212121',
     borderRadius: '4px',
     boxShadow: '0 5px 10px 0 rgba(0, 0, 0, 0.7), 0 0px 10px 0 #000, 0.15px 0.5px 0 0 rgba(255, 255, 255, 0.1) inset'
@@ -38,23 +39,27 @@ const useStyles = (theme) => ({
     padding: '0px',
     overflow: 'hidden',
   },
-  possibleCommands: {
-    maxHeight: '240px',
-    overflowY: 'scroll',
-    scrollbarColor: '#757474',
-  },
   divider: {
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
-  }
+  },
+  noOptionsText: {
+    color: '#d4d6d8',
+    padding: '12px 36px',
+  },
 });
 
 
-const CommandLineModal = ({classes, commands, isOpen, toggleIsModalOpen, onClose, title, logo = <OfflineBoltOutlined/>}) => {
+const CommandLineModal = ({
+                            classes, commands, isOpen, toggleIsModalOpen, title,
+                            noOptionsText = "No command found. Try a different search term.",
+                            logo = <OfflineBoltOutlined/>
+                          }) => {
   let commandsInternal = {};
   Object.entries(commands).map(([commandName, properties]) => {
     commandsInternal[commandName] = {...properties, ref: useRef(null)}
   });
 
+  const [inputValue, setInputValue] = useState('');
   const [possibleCommands, setPossibleCommands] = useState(commandsInternal);
   const [highlightedCmdName, setHighlightedCmdName] = useState(Object.keys(possibleCommands)[0]);
   const [ignoreHover, setIgnoreHover] = useState(false);
@@ -67,8 +72,8 @@ const CommandLineModal = ({classes, commands, isOpen, toggleIsModalOpen, onClose
     setIgnoreHover(previousState => !previousState);
   }
 
-  function handleInputChange(currInput) {
-    const inputToSearch = currInput.toLowerCase();
+  function setPossibleCommandsWithSearchTerm(searchTerm) {
+    const inputToSearch = searchTerm.toLowerCase();
     let tempPossibleCommands = {};
     Object.entries(commandsInternal).map(([commandName, properties]) => {
       if (properties.name.toLowerCase().includes(inputToSearch)) {
@@ -79,11 +84,22 @@ const CommandLineModal = ({classes, commands, isOpen, toggleIsModalOpen, onClose
     changeHighlightedCmd(Object.keys(tempPossibleCommands)[0]);
   }
 
+  function handleInputChange(event) {
+    const newSearchTerm = event.target.value;
+    setPossibleCommandsWithSearchTerm(newSearchTerm);
+    setInputValue(newSearchTerm);
+  }
+
+  function reset() {
+    setInputValue('');
+    setPossibleCommands(commandsInternal);
+  }
+
   function handleCommandSelected() {
     if (highlightedCmdName) {
       possibleCommands[highlightedCmdName]['callback']();
-      setPossibleCommands(commandsInternal);
       toggleIsModalOpen();
+      reset();
     }
   }
 
@@ -122,7 +138,7 @@ const CommandLineModal = ({classes, commands, isOpen, toggleIsModalOpen, onClose
   }
 
   return (
-    <Dialog open={isOpen} onExit={onClose} fullWidth PaperProps={{classes: {root: classes.paperRoot}}}
+    <Dialog open={isOpen} onClose={toggleIsModalOpen} fullWidth PaperProps={{classes: {root: classes.paperRoot}}}
             BackdropProps={{classes: {root: classes.backdropRoot}}} TransitionProps={{timeout: 0}}>
       <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
         <div className={classes.titleSection}>
@@ -133,14 +149,19 @@ const CommandLineModal = ({classes, commands, isOpen, toggleIsModalOpen, onClose
       </DialogTitle>
 
       <DialogContent className={classes.dialogBody}>
-        <Grid container direction="row">
+        <Grid container>
           <Grid item xs={12}>
-            <AutocompleteCommandField handleChange={handleInputChange} onKeyPress={onKeyPress}/>
+            <AutocompleteCommandField fieldValue={inputValue} onChange={handleInputChange} onKeyPress={onKeyPress}/>
           </Grid>
-          <Grid item xs={12} className={classes.possibleCommands}>
+          <Grid item xs={12}>
+            {Object.keys(possibleCommands).length > 0 &&
             <CommandsList commands={possibleCommands} highlightedCmdName={highlightedCmdName}
                           setHighlightedCallback={changeHighlightedCmd} handleEnter={handleCommandSelected}
                           ignoreHover={ignoreHover} toggleIgnoreHover={toggleIgnoreHover}/>
+            }
+            {Object.keys(possibleCommands).length === 0 &&
+            <Typography className={classes.noOptionsText} variant="body1">{noOptionsText}</Typography>
+            }
           </Grid>
         </Grid>
       </DialogContent>

@@ -25,17 +25,10 @@ const useStyles = (theme) => ({
   }
 });
 
-const AutocompleteCommandField = ({classes, handleChange, onKeyPress}) => {
-  const [inputValue, setInputValue] = useState('');
-
-  function onChange(event) {
-    setInputValue(event.target.value);
-    handleChange(event.target.value);
-  }
-
+const AutocompleteCommandField = ({classes, fieldValue, onChange, onKeyPress}) => {
   return (
     <div className={classes.root}>
-      <TextField className={classes.inputField} value={inputValue} onChange={onChange} autoFocus={true} onKeyDown={onKeyPress}
+      <TextField className={classes.inputField} value={fieldValue} onChange={onChange} autoFocus={true} onKeyDown={onKeyPress}
                  fullWidth InputProps={{className: classes.input, disableUnderline: true}}/>
     </div>
   )

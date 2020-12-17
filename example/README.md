@@ -1,5 +1,25 @@
-This example was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# react-super-cmd example ⚡ 
 
-It is linked to the react-super-cmd package in the parent directory for development purposes.
+## Getting started
 
-You can run `npm install` and then `npm start` to test your package.
+### Clone
+If you want to run the example project locally, you first need to clone the repository:
+
+```
+git clone git@github.com:saharmor/react-super-cmd.git
+```
+
+### Build
+
+```
+yarn install && yarn run prepublish
+```
+
+### Start
+Start the example app:
+
+```
+cd example && yarn start
+```
+
+The example app will automatically open in your default browser.
