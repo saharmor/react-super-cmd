@@ -12,11 +12,12 @@ import Typography from "@material-ui/core/Typography";
 import {Link, List, ListItem, ListItemText} from "@material-ui/core";
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
 
 const useStyles = (theme) => ({
   root: {
     backgroundColor: '#fbfafa',
-    height: '100%',
+    height: '100vh',
     display: 'flex',
     flexDirection: 'column',
     flex: '1',
@@ -25,6 +26,9 @@ const useStyles = (theme) => ({
   headline: {
     marginBottom: '10px',
   },
+  ctaText: {
+    fontWeight: 'bold',
+  },
   cmd: {
     backgroundColor: '#dedede',
   },
@@ -32,6 +36,9 @@ const useStyles = (theme) => ({
     fontSize: '10px',
     marginRight: '3px',
   },
+  footer: {
+    marginTop: '30px',
+  }
 });
 
 const App = ({classes}) => {
@@ -75,7 +82,7 @@ const App = ({classes}) => {
 
   return (
     <GlobalHotKeys keyMap={keyMap} handlers={handlers}>
-      <Grid className={classes.root} container justify='center' alignItems='center' spacing={3}>
+      <Grid className={classes.root} container alignItems='center' spacing={3}>
         <Grid item>
           <Typography className={classes.headline} align="center" variant="h4">
             react-super-cmd <span role="img" aria-label="lightning-emoji">⚡</span>
@@ -84,7 +91,7 @@ const App = ({classes}) => {
           <Typography align="center" variant="h6">A blazing fast command line to allow your users to seamlessly interact with your React app.</Typography>
         </Grid>
         {!lastRunCmd && <Grid item>
-          <Typography align="center" variant="body1">
+          <Typography className={classes.ctaText} color="primary" align="center" variant="body1">
             Give it a spin <span role="img" aria-label="point-emoji">👉</span> Press <code className={classes.cmd}>cmd+k</code>
           </Typography>
         </Grid>}
@@ -111,17 +118,24 @@ const App = ({classes}) => {
             </ListItem>
           </List>
         </Grid>
-        <Grid item>
-          <Grid item container direction="row" spacing={1}>
+        <Grid item className={classes.footer}>
+          <Grid item>
+            <Typography variant={"body1"}>
+              <Link href="https://github.com/saharmor/react-super-cmd" target="_blank" rel="noreferrer">
+                By Sahar Mor
+              </Link>
+            </Typography>
+          </Grid>
+          <Grid item container justify="center" direction="row" spacing={1}>
             <Grid item>
-              <GitHubIcon/>
+              <Link href="https://github.com/saharmor/react-super-cmd" target="_blank" rel="noreferrer">
+                <GitHubIcon fontSize="small"/>
+              </Link>
             </Grid>
             <Grid item>
-              <Typography variant={"body1"}>
-                <Link href="https://github.com/saharmor/react-super-cmd" target="_blank" rel="noreferrer">
-                  By Sahar Mor
-                </Link>
-              </Typography>
+              <Link href="https://www.linkedin.com/in/sahar-mor/" target="_blank" rel="noreferrer">
+                <LinkedInIcon/>
+              </Link>
             </Grid>
           </Grid>
         </Grid>
