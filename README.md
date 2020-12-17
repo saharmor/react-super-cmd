@@ -85,7 +85,7 @@ Command details varibales
 | name       | `string`    | The text to be displayed for this command| Search 
 | logo       | `component` | Component that will be next to command's name |`<SearchOutlinedIcon/>` from Material UI|
 | shortcut   | `string`    | Shortcut text to display next to command name |⌘ S|
-| callback   | `func`      | A function callback text to be displayed for this command|function searchCallback(){<br/>console.log("search called")<br/>}|
+| callback   | `func`      | A function callback text to be displayed for this command|function searchCallback() {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("search called")<br/>}|
 
 ### isOpen
 If true, command line modal will be visible.
