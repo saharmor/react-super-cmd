@@ -5,7 +5,7 @@
 
 [![NPM](https://img.shields.io/npm/v/react-super-cmd.svg)](https://www.npmjs.com/package/react-super-cmd) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-The command line experience for the no-mouse generation. A blazing fast command line to allow your users to seamlessly interact with your React app.
+The command line experience for the no-mouse generation. A blazing fast command line for your users to seamlessly interact with your React app.
 <br><br>
 [Live demo](https://saharmor.github.io/react-super-cmd/)
 

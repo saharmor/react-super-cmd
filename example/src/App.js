@@ -88,7 +88,7 @@ const App = ({classes}) => {
             react-super-cmd <span role="img" aria-label="lightning-emoji">⚡</span>
           </Typography>
           <Typography align="center" variant="h6">The command line experience for the no-mouse generation.</Typography>
-          <Typography align="center" variant="h6">A blazing fast command line to allow your users to seamlessly interact with your React app.</Typography>
+          <Typography align="center" variant="h6">A blazing fast command line for your users to seamlessly interact with your React app.</Typography>
         </Grid>
         {!lastRunCmd && <Grid item>
           <Typography className={classes.ctaText} color="primary" align="center" variant="body1">
