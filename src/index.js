@@ -51,7 +51,7 @@ const useStyles = (theme) => ({
 
 const CommandLineModal = ({
                             classes, commands, isOpen, toggleIsModalOpen, title,
-                            noOptionsText = "No command found. Try a different search term.",
+                            noOptionsText = "No commands found. Try a different search term.",
                             logo = <OfflineBoltOutlined/>
                           }) => {
   let commandsInternal = {};
