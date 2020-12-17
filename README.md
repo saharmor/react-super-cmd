@@ -1,6 +1,6 @@
 <p align="center">
-  <h2>React Super Command</h2>
   <img width="300px" src="https://i.ibb.co/FYWBRSb/Screenshot-2020-12-16-at-16-42-30.png" alt="Commandline modal"/><br/>
+  <h2 align="center">React Super Command</h2>
 </p>
 
 [![NPM](https://img.shields.io/npm/v/react-super-cmd.svg)](https://www.npmjs.com/package/react-super-cmd) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
