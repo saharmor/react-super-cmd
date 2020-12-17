@@ -101,7 +101,7 @@ const CommandLineModal = ({
       toggleIsModalOpen();
       reset();
     }
-  }a
+  }
 
   function onArrowsPress(direction) {
     setIgnoreHover(true);
