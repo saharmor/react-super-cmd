@@ -93,6 +93,7 @@ const CommandLineModal = ({
   function reset() {
     setInputValue('');
     setPossibleCommands(commandsInternal);
+    setHighlightedCmdName(Object.keys(commandsInternal)[0]);
   }
 
   function handleCommandSelected() {
