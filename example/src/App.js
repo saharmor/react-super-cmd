@@ -21,7 +21,7 @@ const useStyles = (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     flex: '1',
-    padding: '50px 30px 10px 30px',
+    padding: '30px 30px 10px 30px',
   },
   headline: {
     marginBottom: '10px',
@@ -82,7 +82,7 @@ const App = ({classes}) => {
 
   return (
     <GlobalHotKeys keyMap={keyMap} handlers={handlers}>
-      <Grid className={classes.root} container alignItems='center' spacing={3}>
+      <Grid className={classes.root} container alignItems='center' spacing={2}>
         <Grid item>
           <Typography className={classes.headline} align="center" variant="h4">
             react-super-cmd <span role="img" aria-label="lightning-emoji">⚡</span>
