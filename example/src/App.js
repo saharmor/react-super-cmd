@@ -36,6 +36,10 @@ const useStyles = (theme) => ({
     fontSize: '10px',
     marginRight: '3px',
   },
+  listItem: {
+    paddingBottom: '0px',
+    paddingTop: '0px',
+  },
   footer: {
     marginTop: '20px',
   }
@@ -104,15 +108,15 @@ const App = ({classes}) => {
         <Grid item>
           <Typography variant="h6">Possible applications</Typography>
           <List dense>
-            <ListItem>
+            <ListItem className={classes.listItem}>
               <FiberManualRecordIcon className={classes.listBullet}/>
               <ListItemText primary="In-app navigation" primaryTypographyProps={{variant: "body1"}}/>
             </ListItem>
-            <ListItem>
+            <ListItem className={classes.listItem}>
               <FiberManualRecordIcon className={classes.listBullet} fontSize="small"/>
               <ListItemText primary="Search for contacts/items/files" primaryTypographyProps={{variant: "body1"}}/>
             </ListItem>
-            <ListItem>
+            <ListItem className={classes.listItem}>
               <FiberManualRecordIcon className={classes.listBullet} fontSize="small"/>
               <ListItemText primary="Any other use cases requiring a list of options to select from" primaryTypographyProps={{variant: "body1"}}/>
             </ListItem>
