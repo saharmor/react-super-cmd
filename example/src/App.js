@@ -37,7 +37,7 @@ const useStyles = (theme) => ({
     marginRight: '3px',
   },
   footer: {
-    marginTop: '30px',
+    marginTop: '20px',
   }
 });
 
