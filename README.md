@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="250px" src="https://i.ibb.co/9rMgx60/demo-image.png" alt="Commandline modal"/><br/>
+  <img width="350px" src="https://i.ibb.co/9rMgx60/demo-image.png" alt="Commandline modal"/><br/>
   <h2 align="center">React Super Command ⚡</h2>
 </p>
 
