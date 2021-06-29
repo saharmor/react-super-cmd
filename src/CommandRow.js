@@ -41,6 +41,18 @@ const useStyles = (theme) => ({
 const CommandRow = ({classes, command, commandName, isHighlighted, onHover, onKeyPress, onClick, ref}) => {
   const rootStyle = isHighlighted ? classes.rootHighlighted : classes.root;
 
+  function shortcutToKeys(shortcut) {
+    return (
+      <Grid container>
+        {
+          shortcut.split(" ").map((keyboardKey) => {
+            return <Grid item><Typography className={classes.shortcut} variant="body2" align="center">{keyboardKey}</Typography></Grid>
+          })
+        }
+      </Grid>
+    )
+  }
+
   return (
     <ButtonBase ref={command['ref']} className={rootStyle} onClick={onClick} onMouseEnter={() => onHover(commandName)} onKeyPress={onKeyPress}>
       <Grid item container className={classes.button} justify="space-between">
@@ -55,7 +67,7 @@ const CommandRow = ({classes, command, commandName, isHighlighted, onHover, onKe
           </Grid>
         </Grid>
         <Grid item>
-          {command['shortcut'] && <Typography className={classes.shortcut} variant="body2" align="center">{command['shortcut']}</Typography>}
+          {command['shortcut'] && shortcutToKeys(command['shortcut'])}
         </Grid>
       </Grid>
     </ButtonBase>

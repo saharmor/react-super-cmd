@@ -104,6 +104,8 @@ A logo component to display as part of the title
 Optional<br> 
 Text to show when no commands were found based on input search term
 
-## License
+## Development
+Follow [create-react-library development guide](https://www.npmjs.com/package/create-react-library#development)
 
+## License
 `react-super-cmd` is released under MIT license © [saharmor](https://github.com/saharmor).

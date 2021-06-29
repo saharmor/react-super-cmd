@@ -63,7 +63,7 @@ const App = ({classes}) => {
       name: 'Update', logo: <UpdateOutlinedIcon/>, shortcut: null, callback: () => setLastRunCmd('UPDATE_CONTACT')
     },
     REACH_OUT_CONTACT: {
-      name: 'Reach out', logo: <UpdateOutlinedIcon/>, shortcut: 'ctrl+R', callback: () => setLastRunCmd('REACH_OUT_CONTACT')
+      name: 'Reach out', logo: <UpdateOutlinedIcon/>, shortcut: 'ctrl R', callback: () => setLastRunCmd('REACH_OUT_CONTACT')
     }
   }
 

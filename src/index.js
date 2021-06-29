@@ -46,6 +46,9 @@ const useStyles = (theme) => ({
     color: '#d4d6d8',
     padding: '12px 36px',
   },
+  commandsList:{
+    paddingRight: '3px',
+  }
 });
 
 
@@ -154,7 +157,7 @@ const CommandLineModal = ({
           <Grid item xs={12}>
             <AutocompleteCommandField fieldValue={inputValue} onChange={handleInputChange} onKeyPress={onKeyPress}/>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} className={classes.commandsList}>
             {Object.keys(possibleCommands).length > 0 &&
             <CommandsList commands={possibleCommands} highlightedCmdName={highlightedCmdName}
                           setHighlightedCallback={changeHighlightedCmd} handleEnter={handleCommandSelected}
