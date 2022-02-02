@@ -47,7 +47,7 @@ const useStyles = (theme) => ({
     padding: '12px 36px',
   },
   commandsList:{
-    paddingRight: '4px',
+    paddingRight: '3px',
   }
 });
 
