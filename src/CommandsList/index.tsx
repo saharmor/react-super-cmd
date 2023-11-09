@@ -1,43 +1,7 @@
-import CommandRow, { Command } from './CommandRow'
-import { Theme, createStyles, withStyles } from '@material-ui/core'
-
-const useStyles = (theme: Theme) => createStyles({
-  root: {
-    maxHeight: '220px',
-    overflow: 'auto',
-
-    "&::-webkit-scrollbar": {
-      width: '8px',
-      borderRadius: '5px',
-      paddingRight: '3px',
-    },
-    "&::-webkit-scrollbar-track": {
-      borderRadius: '5px',
-    },
-    "&::-webkit-scrollbar-thumb": {
-      borderRadius: '5px',
-      backgroundColor: "#757474",
-    },
-  },
-  child: {
-    height: '100%',
-    margin: '0 auto',
-  }
-})
-
-type Props = {
-  classes: {
-    [key: string]: string
-  },
-  commands: {
-    [key: string]: Command
-  }
-  highlightedCmdName: string
-  setHighlightedCallback: (name: string) => void
-  handleEnter: () => void
-  ignoreHover: boolean
-  toggleIgnoreHover: () => void
-}
+import CommandRow from 'CommandRow'
+import { withStyles } from '@material-ui/core'
+import { useStyles } from './styles'
+import { Props } from './types'
 
 const CommandsList = ({
   classes,
