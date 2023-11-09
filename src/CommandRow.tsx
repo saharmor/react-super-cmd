@@ -8,11 +8,9 @@ import {
 import Grid from '@material-ui/core/Grid'
 import {
   KeyboardEvent,
-  LegacyRef,
   MouseEvent,
   MutableRefObject,
   ReactNode,
-  RefObject,
 } from 'react'
 
 const useStyles = (theme: Theme) => createStyles({
